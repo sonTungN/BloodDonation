@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.sontung.blooddonation.views.OnBoardingItem
 import com.sontung.blooddonation.R
+import com.sontung.blooddonation.model.OnBoardingItem
 
 class OnBoardingItemAdapter (
     private val pageItems: List<OnBoardingItem>

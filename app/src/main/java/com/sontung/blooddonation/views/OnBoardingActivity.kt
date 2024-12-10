@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.sontung.blooddonation.R
 import com.sontung.blooddonation.adapter.OnBoardingItemAdapter
 import com.sontung.blooddonation.databinding.ActivityOnBoardingBinding
+import com.sontung.blooddonation.model.OnBoardingItem
 
 class OnBoardingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOnBoardingBinding
@@ -93,9 +94,3 @@ class OnBoardingActivity : AppCompatActivity() {
         finish()
     }
 }
-
-data class OnBoardingItem (
-    val title: String,
-    val description: String,
-    val imageResId: Int
-)
