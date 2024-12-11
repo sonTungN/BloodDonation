@@ -71,12 +71,12 @@ class OnBoardingActivity : AppCompatActivity() {
                 viewPager2.currentItem += 1
                 
             } else {
-                navigateToUserSignIn()
+                navigateToGateWay()
             }
         }
         
         binding.skipBtn.setOnClickListener {
-            navigateToUserSignIn()
+            navigateToGateWay()
         }
         
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -86,8 +86,8 @@ class OnBoardingActivity : AppCompatActivity() {
         }
     }
     
-    private fun navigateToUserSignIn() {
-        val intent = Intent(this@OnBoardingActivity, SignInActivity::class.java)
+    private fun navigateToGateWay() {
+        val intent = Intent(this@OnBoardingActivity, AuthGateWayActivity::class.java)
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         
         startActivity(intent)
