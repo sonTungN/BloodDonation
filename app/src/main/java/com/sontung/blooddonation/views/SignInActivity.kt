@@ -9,10 +9,14 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import com.sontung.blooddonation.R
 import com.sontung.blooddonation.databinding.ActivitySignInBinding
+import com.sontung.blooddonation.model.User
+import com.sontung.blooddonation.viewmodel.UserViewModel
 
 class SignInActivity : AppCompatActivity() {
     
     private lateinit var binding: ActivitySignInBinding
+
+    private lateinit var userViewModel: UserViewModel
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,18 +24,30 @@ class SignInActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_in)
         
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_in)
-        
-        binding.signupCta.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            
-            startActivity(intent)
-        }
+        userViewModel = UserViewModel(this)
+
+        setUpButtonClickHandlerEvent()
         
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+    }
+
+    private fun setUpButtonClickHandlerEvent() {
+        binding.signinBtn.setOnClickListener {
+            val email = binding.signinEmail.text.toString().trim()
+            val password = binding.signinPassword.text.toString().trim()
+
+            userViewModel.signInUserWithEmailAndPassword(email, password)
+        }
+
+        binding.signupCta.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+
+            startActivity(intent)
         }
     }
 }
